@@ -1,0 +1,44 @@
+[
+  {
+    "content": "Modules Core modules graph TD;\rkula_core -- klang\rklang -- kula_bindings\rklFiles[(*.kl files)] -.- kula_bindings\rkula_core -- slang\rslang -- TBD\rshFiles[(*.shader files)] -.- TBD\r Engine modules graph TD;\rkula_graphics \u0026 kula_audio -- kula_engine\rkula_engine \u0026 kula_editor -- kula\r Configurations  Paranoid All checks ON (Paranoid + Debug + Production), the slowest runtime. Debug Most checks ON (Debug + Production), a somewhat usable runtime. Production Only major checks ON, a performant runtime for editing. Profile Checks OFF, only profiling instrumentation. Runtime performance close to final. Final Checks OFF. The faster runtime.  Configuration matrix     Paranoid Debug Production Profile Final     Editor ✓ ✓ ✓ N/A N/A   Standalone ✓ ✓ ✓ ✓ ✓    Feature matrix     Paranoid Debug Production Profile Final     Assert ✓ ✓ ✗ ✗ ✗   Debug ✓ ✓ ✗ ✗ ✗   Development ✓ ✓ ✓ ✓ ✓   Optimized ✗ ✗ Partial ✓ ✓    #define matrix     Editor Standalone     Mode KL_IS_MODE(EDITOR) KL_IS_MODE(STANDALONE)    ",
+    "description": "General architecture regarding the configurations and modules used by the Kula engine.",
+    "tags": null,
+    "title": "Architecture",
+    "uri": "/design/architecture/"
+  },
+  {
+    "content": "",
+    "description": "",
+    "tags": null,
+    "title": "Categories",
+    "uri": "/categories/"
+  },
+  {
+    "content": "Design Technical documentation regarding the modules and technologies used in the Kula engine.\nArchitecture General architecture regarding the configurations and modules used by the Kula engine.\nSerialization Serialization principles and models used by the Kula engine.\n ",
+    "description": "",
+    "tags": null,
+    "title": "Design",
+    "uri": "/design/"
+  },
+  {
+    "content": "",
+    "description": "",
+    "tags": null,
+    "title": "Kula Engine",
+    "uri": "/"
+  },
+  {
+    "content": "Kula syntax In order to be saved and restored at a later date, classes must be declared using the Kula syntax, in *.kl files.\nDeclaration   Member   u32 AnIntegerMember = 5   Enum   enum AnimalType { Cat, Dog } Attributes Any number of attributes can be set to namespaces, members, they follow the syntax\n[BoolAttribute] Thing [SingleAttribute(Value)] Thing [MultiAttribute(Value1, Value2)] Thing Know attributes modify the serialization properties of things. The other are ignored but are still retrievable using the reflection system.\n Version(integral): class only. Used for deprecation purpose. Extended: class only. The class is extended with a programmer-provided class definition. Name(string): class, member, enum. Affects the name displayed by the UI. Renamed(string, …): class, member, enum. The current thing replaces the ones whose name is given.  A complete example namespace kula { [version(2)] class MyClass { enum MyEnum { Thing, [Name(\"Pretty name\")] NotPretty } class NestedClass { } const u32 TheArraySize = 8 NestedClass AnArrayMember[TheArraySize] } } Kula XDFF (eXtensible Data File Format) Base chunk Klang-related chunks KLSrzRfl Means the next chunks contains serialized binary data and their reflection attributes. This is the work format, the final standalone build shouldn’t use it.\nKLSrzFin Means the next chunks contains serialized data in the final binary format. No reflection information is available, as its purpose is to load as fast as possible.\nKLVER u32: Version number\nKLCRC32 u32: A value computed with the CRC32 algorithm\nKLType# : KLCRC32 A type hash is exactly a KLCRC32.\nKLString u32: Length in bytes (zero not included) byte[Length]: The bytes making the string\nKLStruct Valid if it contains the following chunks before any other chunk: KLVer, KLType\nKLMember Valid if it contains the following chunk before any other chunk: KLName, KLType, KLCount (optional, 1 is inferred if the chunk is absent)\nKLName : KLString Behave exactly as a KLString.\nKLCount u32: The number of items that follow\nKLNative An array of native values. Their type is defined with the member’s KLType. Their count comes from KLCount\nKLEnum : KLCRC32 Behave exactly as a KLCRC32. Holds 0 if it’s an invalid entry.\n",
+    "description": "Serialization principles and models used by the Kula engine.",
+    "tags": null,
+    "title": "Serialization",
+    "uri": "/design/serialization/"
+  },
+  {
+    "content": "",
+    "description": "",
+    "tags": null,
+    "title": "Tags",
+    "uri": "/tags/"
+  }
+]

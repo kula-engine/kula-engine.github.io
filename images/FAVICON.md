@@ -1,0 +1,1 @@
+The Kula logo can be found at "<kula_repository>/src/kula/resources/icons/"

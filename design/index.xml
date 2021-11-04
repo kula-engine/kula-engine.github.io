@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Design on Kula Engine</title>
+    <link>https://kula-engine.github.io/design/</link>
+    <description>Recent content in Design on Kula Engine</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://kula-engine.github.io/design/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Architecture</title>
+      <link>https://kula-engine.github.io/design/architecture/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://kula-engine.github.io/design/architecture/</guid>
+      <description>Modules Core modules graph TD;kula_core -- klangklang -- kula_bindingsklFiles[(*.kl files)] -.- kula_bindingskula_core -- slangslang -- TBDshFiles[(*.shader files)] -.- TBD Engine modules graph TD;kula_graphics &amp; kula_audio -- kula_enginekula_engine &amp; kula_editor -- kula Configurations  Paranoid All checks ON (Paranoid + Debug + Production), the slowest runtime. Debug Most checks ON (Debug + Production), a somewhat usable runtime. Production Only major checks ON, a performant runtime for editing.</description>
+    </item>
+    <item>
+      <title>Serialization</title>
+      <link>https://kula-engine.github.io/design/serialization/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://kula-engine.github.io/design/serialization/</guid>
+      <description>Kula syntax In order to be saved and restored at a later date, classes must be declared using the Kula syntax, in *.kl files.
+Declaration   Member   u32 AnIntegerMember = 5   Enum   enum AnimalType { Cat, Dog } Attributes Any number of attributes can be set to namespaces, members, they follow the syntax
+[BoolAttribute] Thing [SingleAttribute(Value)] Thing [MultiAttribute(Value1, Value2)] Thing Know attributes modify the serialization properties of things.</description>
+    </item>
+  </channel>
+</rss>
